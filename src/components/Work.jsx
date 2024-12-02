@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion"; // Ensure correct library import
 
 function Work() {
-  var images = [
+  const [images, setImages] = useState([
     {
       url: "https://assets-global.website-files.com/6334198f239547d0f9cd84b3/634ef09178195ce0073e38f3_Refokus%20Tools-1.png",
       top: "50%",
@@ -38,11 +39,51 @@ function Work() {
       left: "55%",
       isActive: false,
     },
-  ];
+  ]);
+
+  const { scrollYProgress } = useScroll();
+
+  useMotionValueEvent(scrollYProgress, "change", (data) => {
+    function imageShow(arr) {
+      setImages((prev) =>
+        prev.map((item, index) =>
+          arr.indexOf(index) === -1
+            ? { ...item, isActive: false }
+            : { ...item, isActive: true }
+        )
+      );
+    }
+
+    switch (Math.floor(data * 100)) {
+      case 0:
+        imageShow([]);
+        break;
+      case 2:
+        imageShow([0]);
+        break;
+      case 4:
+        imageShow([0, 1]);
+        break;
+      case 6:
+        imageShow([0, 1, 2]);
+        break;
+      case 8:
+        imageShow([0, 1, 2, 3]);
+        break;
+      case 9:
+        imageShow([0, 1, 2, 3, 4]);
+        break;
+      case 10:
+        imageShow([0, 1, 2, 3, 4, 5]);
+        break;
+      default:
+        break;
+    }
+  });
 
   return (
     <div className="w-full">
-      <div className=" relative max-w-screen-xl mx-auto text-center">
+      <div className="relative max-w-screen-xl mx-auto text-center">
         <h1 className="text-[30vw] leading-none font-regular select-none">
           work
         </h1>
@@ -55,6 +96,7 @@ function Work() {
                   src={elem.url}
                   style={{ top: elem.top, left: elem.left }}
                   alt=""
+                  key={index}
                 />
               )
           )}

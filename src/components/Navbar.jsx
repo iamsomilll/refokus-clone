@@ -13,9 +13,9 @@ function Navbar() {
       <div className="links flex gap-20 ml-20">
         {["Home", "Work", "Culture", "", "News"].map((elem, index) =>
           elem.length === 0 ? (
-            <span className="w-[2px] h-7 bg-zinc-600 "></span>
+            <span key={index} className="w-[2px] h-7 bg-zinc-600 "></span>
           ) : (
-            <a className="text-sm flex items-center gap-1" href="#">
+            <a key={index} className="text-sm flex items-center gap-1" href="#">
               {index === 1 && (
                 <span
                   style={{ boxShadow: "0 0 1.45em #00FF19" }}

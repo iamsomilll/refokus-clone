@@ -5,8 +5,8 @@ function Card({ width, start, para, hover, title, heading }) {
   return (
     <div
       className={`bg-zinc-800 p-6 rounded-md font-[Satoshi] ${width} min-w-[30rem] flex flex-col justify-between ${
-        hover ? "hover:bg-violet-600" : ""
-      } transition duration-500 ease-in-out`}
+        hover ? "hover:pl-10 hover:pr-10 hover:bg-purple-500" : ""
+      } transition-all duration-500 ease-in-out box-border`}
     >
       <div className="w-full">
         <div className="w-full flex items-center justify-between">
