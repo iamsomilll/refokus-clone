@@ -1,12 +1,12 @@
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
-function Card({ width, start, para, hover, title, heading }) {
+function Card({ width, start, para, hoverBg, title, heading }) {
   return (
     <div
-      className={`bg-zinc-800 p-6 rounded-md font-[Satoshi] ${width} min-w-[30rem] flex flex-col justify-between ${
-        hover ? "hover:pl-10 hover:pr-10 hover:bg-purple-500" : ""
-      } transition-all duration-500 ease-in-out box-border`}
+      className={`bg-zinc-800 p-6 rounded-md font-[Satoshi] ${width} min-w-[30rem] h-[32rem] flex flex-col justify-between hover:p-10 transition-all duration-500 ease-in-out box-border ${
+        hoverBg ? "hover:bg-purple-500" : ""
+      }`}
     >
       <div className="w-full">
         <div className="w-full flex items-center justify-between">
@@ -14,12 +14,11 @@ function Card({ width, start, para, hover, title, heading }) {
           <IoIosArrowRoundForward className="text-2xl" />
         </div>
         <h1 className="text-4xl font-extralight mt-6">
-          {Array.isArray(heading) // Check if heading is an array
+          {Array.isArray(heading)
             ? heading.map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
-                  {index < heading.length - 1 && <br />}{" "}
-                  {/* Add <br> except for the last line */}
+                  {index < heading.length - 1 && <br />}
                 </React.Fragment>
               ))
             : heading}
